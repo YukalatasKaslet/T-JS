@@ -24,15 +24,26 @@
 
 #cook {
 	position: relative;
-	top: 113px;
+	top: 100px;
 	left: 173px;
+}
+
+#cook form input[type=text]{
+	border: none;
+	border-radius: 3px;
+	padding: +3px;
+	outline-color: #FF0770;
+}
+#cook form input[type=submit]{
+ background-color: black;
+ color: white;
 }
 
 #timer {
 	width: 145px;
 	height: 90px;
 	position: relative;
-	top: -54px;
+	top: 50px;
 	left: 309px;
 	border: 2px solid #999;
 }
@@ -75,4 +86,11 @@
 
 .Casi-listo {
 	background-color: #FF7F00;
+}
+
+input[type=submit]{
+	border: 1px dotted black;
+	border-radius: 3px;
+	background-color: transparent;
+	outline-color: #FF0770;
 }
