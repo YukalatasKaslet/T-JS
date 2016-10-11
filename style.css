@@ -45,7 +45,14 @@
 	position: relative;
 	top: 50px;
 	left: 309px;
-	border: 2px solid #999;
+	border: 2px solid black;
+}
+#contador{
+	margin: auto;
+	margin-top: 15px;
+	text-align: center;
+	font-size: 1.6em;
+	color: white;
 }
 
 #countdown {
@@ -62,6 +69,7 @@
 	visibility: hidden;
 	width: 768px;
 	margin: 0 auto;
+	list-style-type: decimal;
 }
 
 .recien-salidas {
@@ -73,19 +81,28 @@
 }
 
 .QUEMADO {
-	background-color: #FF0000;
+	background-color: #FF0000;/*Rojo*/
+	box-shadow: 0px 0px 15px 3px #FF0000;
+/*	border: 2px solid #ff8989;*/
 }
 
 .LISTO {
-	background-color: #008600;
+	background-color: #008600;/*Verde*/
+	box-shadow: 0px 0px 15px 3px #008600;
+/*	border: 2px solid #2bce2b;*/
 }
 
 .Crudo {
-	background-color: #7F7F7F;
+	background-color: #7F7F7F;/*gris*/
+	box-shadow: 0px 0px 15px 3px #7F7F7F;
+/*	border: 2px solid #b6b4b4;*/
 }
 
 .Casi-listo {
-	background-color: #FF7F00;
+	background-color: #FF7F00;/*naranja*/
+	box-shadow: 0px 0px 15px 3px #FF7F00;
+/*	border: 2px solid #ffb76f;
+	border-radius: 5px;*/
 }
 
 input[type=submit]{
