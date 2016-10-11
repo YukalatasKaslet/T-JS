@@ -105,7 +105,7 @@ function Oven(torta, tiempo){
           $(".Hornear").find("input:nth-child(2)").val("");
           $(".Hornear").find("input:nth-child(3)").show();
           clearInterval(animacion);
-        }, 1000); 
+        }, 900); 
       } else { i --; }
     }, 1000);//end animacion
     // }//end for
