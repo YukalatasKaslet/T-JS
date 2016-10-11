@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+  $("*").find(".lista").hide();
 
   $("form").submit(function(e){
     e.preventDefault();
@@ -25,7 +26,7 @@ $( document ).ready(function() {
         $(".Hornear").find("input:nth-child(3)").hide();
         // console.log(tiempoTorta);
         // console.log ("********");
-        torta = new Torta(tipo_torta);
+        torta = new Torta(tipo_torta.toLowerCase());
         // console.log (torta);
         // console.log (torta.tipoTorta);
         // console.log (torta.estatus);
@@ -42,6 +43,10 @@ $( document ).ready(function() {
   });// end form.submit
 
 });//end $( document ).ready
+
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
 
 // Class Torta
 function Torta(tipo){
@@ -98,18 +103,24 @@ function Oven(torta, tiempo){
       }
 
       if ( i == 0 ) {
-        x = setTimeout(function(){
+        // sleep time expects milliseconds
+        function sleep (time) {
+          return new Promise((resolve) => setTimeout(resolve, time));
+        }
+
+        // Usage!
+        sleep(900).then(() => {
+            // Do something after the sleep!
           mostrarListaTortas(torta); 
           $("#timer").empty().removeClass("Crudo Casi-listo LISTO QUEMADO").css({"border": "2px solid black", "border-radius": "none"});
           $(".Hornear").find("input:nth-child(1)").val("");
           $(".Hornear").find("input:nth-child(2)").val("");
           $(".Hornear").find("input:nth-child(3)").show();
           clearInterval(animacion);
-        }, 900); 
+        });
       } else { i --; }
     }, 1000);//end animacion
     // }//end for
-    clearTimeout(x);
     console.log("true1");
   }//end this.cook
 }//end Class Oven
@@ -118,15 +129,23 @@ function Oven(torta, tiempo){
 
 function mostrarListaTortas(torta){
   torta = torta;
-  console.log("true2");
-  console.log(torta);
-  console.log(torta instanceof Torta);
-  // if (torta.estatus == "listo"){
-    console.log("***");
-    $("#history").css("visibility","visible");
-    $("#history").append("<li>"+ torta.tipoTorta +": <strong class=\"LISTO\">"+ torta.estatus +"</strong></li>");
-  // }
-
+  // console.log("true2");
+  // console.log(torta);
+  // console.log(torta instanceof Torta);
+  $("*").find(".lista").show();
+  $("#history").css("visibility","visible");
+  if (torta.estatus == "listo"){
+    $("#history").append("<li>"+ torta.tipoTorta.capitalizeFirstLetter() +": <strong style=\"color:green;\">"+ torta.estatus +"</strong></li>");
+  }
+  else if(torta.estatus == "QUEMADO"){
+    $("#history").append("<li>"+ torta.tipoTorta.capitalizeFirstLetter() +": <strong style=\"color:red;\">"+ torta.estatus +"</strong></li>");
+  }
+  else if(torta.estatus == "crudo"){
+    $("#history").append("<li>"+ torta.tipoTorta.capitalizeFirstLetter() +": <strong style=\"color:#7F7F7F;\">"+ torta.estatus +"</strong></li>");
+  }
+  else{
+    $("#history").append("<li>"+ torta.tipoTorta.capitalizeFirstLetter() +": <strong style=\"color:#FF7F00;\">"+ torta.estatus +"</strong></li>");
+  }
 }
 
 
@@ -134,6 +153,7 @@ function mostrarListaTortas(torta){
 
 
 /*
+    // $("#history").append("<li> TORTA PRUEBA: <strong style=\"color:blue;\"> DEBO SER AZUL </strong></li>");
       $( "input" ).prop( "disabled", true ); //Disable
       $( "input" ).prop( "disabled", false ); //Enable
 */
